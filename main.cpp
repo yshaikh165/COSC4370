@@ -33,7 +33,7 @@ int main() {
     z = z/y;
     z = x-z;
     z = sqrt(z);
-    z = 6*z;
+    z = 6*z; //quadrant
     
     //RGB
     bmpNew.set_pixel(i, z, 255, 250, 250, 255); 
