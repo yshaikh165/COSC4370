@@ -1,28 +1,3 @@
-/*******************************************************
- * Homework 2: OpenGL                                  *
- *-----------------------------------------------------*
- * First, you should fill in problem1(), problem2(),   *
- * and problem3() as instructed in the written part of *
- * the problem set.  Then, express your creativity     *
- * with problem4()!                                    *
- *                                                     *
- * Note: you will only need to add/modify code where   *
- * it says "TODO".                                     *
- *                                                     *
- * The left mouse button rotates, the right mouse      *
- * button zooms, and the keyboard controls which       *
- * problem to display.                                 *
- *                                                     *
- * For Linux/OS X:                                     *
- * To compile your program, just type "make" at the    *
- * command line.  Typing "make clean" will remove all  *
- * computer-generated files.  Run by typing "./hw2"    *
- *                                                     *
- * For Visual Studio:                                  *
- * You can create a project with this main.cpp and     *
- * build and run the executable as you normally would. *
- *******************************************************/
-
 #include <iostream>
 #include <cmath>
 #include <cstdio>
@@ -44,18 +19,112 @@ float shininess[] = { 50.0 };
 
 void problem1() {
     // TODO: Your code here!
+  //Teapot
+  //you should be able to create the image using only glutSolidTeapot, glutSolidCube, and OpenGL’s transformation mechanisms like glPushMatrix, glPopMatrix, glTranslatef, etc.
+  double r = 1.25f; 
+  double size = 0.25f;
+  
+  glMatrixMode(GL_MODELVIEW);
+  glPushMatrix();
+  //at least one instance of nested applications of glPushMatrix 
+  for(double i = 0.0f; i < 2 * 3.14f; i = i + (2*3.14f/10)) 
+  {
+    glPushMatrix();
+    glTranslatef(cos(i) * r,sin(i) * r, 0);
+    glRotatef(i * 180 / 3.14f, 0.0f, 0.0f, 1.0f);
+    glutSolidTeapot(size);
+    glPopMatrix();
+  }
+  glPopMatrix();
 }
 
 void problem2() {
     // TODO: Your code here!
+  int num = 15;
+	glPushMatrix(); 
+	glTranslatef(-1.50, 0, 0);	
+	for (int i = 0; i < num; i++) 
+  {
+		for(int j = 0; j <= i; j++)
+    {
+			glPushMatrix();
+			glTranslatef(i*0.2,0.25*j*0.2,0);
+			glutSolidCube(0.2);
+			glPopMatrix();
+		}
+	}
+	glPopMatrix();
 }
 
 void problem3() {
     // TODO: Your code here!
+  //Teapot pyramid
+  glMatrixMode(GL_MODELVIEW);
+  glPushMatrix();
+
+  double size = 0.25f; 
+  int x = 6; 
+  int y = 5;
+
+  for(int i = 0; i < 3; i++) 
+  {
+    for(int j = 0; j < x; j++) 
+    {
+      glPushMatrix();
+      glTranslatef(j-(x/2)+0.5f, (i * 1.05f)-1.5f, 0.0f);
+      glutSolidTeapot(size);
+      glPopMatrix();
+    }
+
+    for(int k = 0; k < y; k++)
+    {
+      glPushMatrix();
+      glTranslatef(k-(y/2), ((i + 0.5f) * 1.05f)-1.5f, 0.0f);
+      glutSolidTeapot(size);
+      glPopMatrix();
+    }
+    
+    y = y - 2;
+    x = x - 2; 
+  }
+  glPopMatrix();
 }
 
-void problem4() {
+void problem4() { 
     // TODO: Your code here!
+  float r = 1.20f;
+  float size = 0.15f;
+  float x = 0.0f;
+  
+  //Render at least one triangle by feeding in its coordinates directly
+  glBegin(GL_TRIANGLES);
+  glVertex3f(-0.4f,0,0);
+  glVertex3f(0.4f,0,0);
+  glVertex3f(0,-1.0f,0);
+  glEnd();
+
+  glPushMatrix();
+
+  glTranslatef (-0.10, 0.1, 0);
+	glRotatef(2, 0.0f, 0.0f, 1.0f);
+	glPushMatrix();
+  
+  //at least one instance of nested applications of glPushMatrix
+  for(double i = 0.0f; i < 5 * 3.14f; i = i +(2*3.14f/20))
+  {
+    glPushMatrix();
+    glTranslatef(cos(i) * r,sin(i) * r, x);
+    glRotatef(i * 90 / 3.14f, 0.0f, 0.0f, 1.0f);
+    glutSolidCube(size);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(cos(i + 3.14f) * r,sin(i + 3.14f) * r, x);
+    glRotatef(i * 180 / 3.14f, 0.0f, 0.0f, 1.0f);
+    glutSolidCube(size);
+    glPopMatrix();
+  }
+   glPopMatrix();
 }
 
 void display() {
