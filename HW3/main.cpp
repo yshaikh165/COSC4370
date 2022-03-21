@@ -183,7 +183,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 void do_movement()
 {
-    // Camera controls
     if (keys[GLFW_KEY_W])
         camera.ProcessKeyboard(FORWARD, deltaTime);
     if (keys[GLFW_KEY_S])
