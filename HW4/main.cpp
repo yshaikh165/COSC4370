@@ -1,3 +1,7 @@
+Sources:
+https://learnopengl.com/Getting-started/Textures
+http://www.opengl-tutorial.org/beginners-tutorials/tutorial-4-a-colored-cube/
+http://www.mhzn.net/index.php/2-c-plus-plus/3-3d-cube-using-c-opengl
 
 #include <iostream>
 #include <cmath>
