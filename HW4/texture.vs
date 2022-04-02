@@ -11,6 +11,10 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
+//I used stackoverflow to help me. Here it the link to the website: 
+//https://stackoverflow.com/questions/48266344/model-view-and-projection-matrix-do-not-want-to-work-well-for-opengl-glsl
+
+
 void main()
 {
     gl_Position = (projection * view * model) * (vec4(position, 1.0));
