@@ -200,9 +200,9 @@ int main()
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
         // TODO: bind your texture
+        glBindBuffer(GL_ARRAY_BUFFER, UVBO);
         glBindTexture(GL_TEXTURE_2D, texture);
         glEnableVertexAttribArray(1);
-        glBindBuffer(GL_ARRAY_BUFFER, UVBO);
         glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,0,(void*)0);
 
         // Draw the container (using container's vertex attributes)
